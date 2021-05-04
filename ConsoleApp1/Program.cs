@@ -11,23 +11,28 @@ namespace Pokecolgado
             bool continuar = true;
             while (continuar)
             {
-                List<char> cList = new List<char>();
-                List<char> eList = new List<char>();
-
-                string[] pokemon = { "Ekans", "Pidgeotto", "Moltres", "Nidoking", "vulpix",
+                string [] pokemon = { "Ekans", "Pidgeotto", "Moltres", "Nidoking", "Vulpix",
                 "Shellder", "Kadabra", "Poliwag", "Growlithe", "Articuno",
                 "Hypno", "Koffing", "Pickachu", "Zapdos", "Mew",
-                "Seadra", "Scyther", "Omastar", "Dratini", "Jolteon"};
+                "Seadra", "Scyther", "Omastar", "Dratini", "Jolteon", "Mewtwo",
+                "Beedrill", "Sandshrew", "Venasaur", "Eevee", "Squirtle",
+                "Bulbasaur", "Kabutops", "Charmander", "Ninetales", "Fearow",
+                "Weedle", "Metapod", "Wygglypuff", "Wartortle", "Raichu"};
+
+                List<char> cList = new List<char>();
+                List<char> eList = new List<char>();
 
                 Random random = new Random();
                 string pokemonElegido = pokemon[random.Next(0, pokemon.Length)];
                 string palabraUpper = pokemonElegido.ToUpper();
                 string input;
-                String confirmar= "";
-                int vidas = 5, puntos = 0;
+                String confirmar = "";
+                char intento;
+                int vidas = 5;
+                int puntos = 0;
                 int letrasReveladas = 0;
                 bool fin = false;
-                char intento;
+                
 
                 StringBuilder letrasOcultas = new StringBuilder(pokemonElegido.Length);
                 for (int i = 0; i < pokemonElegido.Length; i++)
@@ -117,7 +122,6 @@ namespace Pokecolgado
                 }
                 Console.ReadLine();
                 
-
                 Console.WriteLine("Para volver a jugar escribe Si, en caso contrario, cualquier otro caracter");
                 while (String.IsNullOrEmpty(confirmar))
                 {
