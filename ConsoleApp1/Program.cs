@@ -11,11 +11,8 @@ namespace Pokecolgado
             bool continuar = true;
             while (continuar)
             {
-
-
-                ;
-                List<char> correctList = new List<char>();
-                List<char> incorrectList = new List<char>();
+                List<char> cList = new List<char>();
+                List<char> eList = new List<char>();
 
                 string[] pokemon = { "Ekans", "Pidgeotto", "Moltres", "Nidoking", "vulpix",
                 "Shellder", "Kadabra", "Poliwag", "Growlithe", "Articuno",
@@ -26,15 +23,15 @@ namespace Pokecolgado
                 string pokemonElegido = pokemon[random.Next(0, pokemon.Length)];
                 string palabraUpper = pokemonElegido.ToUpper();
                 string input;
-                String x= "";
-                int vidas = 5, points = 0;
+                String confirmar= "";
+                int vidas = 5, puntos = 0;
                 int letrasReveladas = 0;
-                bool end = false;
+                bool fin = false;
                 char intento;
 
-                StringBuilder hiddenDisplay = new StringBuilder(pokemonElegido.Length);
+                StringBuilder letrasOcultas = new StringBuilder(pokemonElegido.Length);
                 for (int i = 0; i < pokemonElegido.Length; i++)
-                    hiddenDisplay.Append('_');
+                    letrasOcultas.Append('_');
 
                 Console.WriteLine("/////////////////////");
                 Console.WriteLine("El Poke-Colgado");
@@ -50,7 +47,7 @@ namespace Pokecolgado
                 Console.ReadLine();
                 Console.WriteLine("Quien es este pokemon!?");
 
-                while (!end && vidas > 0)
+                while (!fin && vidas > 0)
                 {
                     Console.Write("Escribe una letra: ");
 
@@ -61,12 +58,12 @@ namespace Pokecolgado
                     }
                     intento = input[0];
 
-                    if (correctList.Contains(intento))
+                    if (cList.Contains(intento))
                     {
                         Console.WriteLine("Esta letra ya fue añadida: '{0}'", intento);
                         continue;
                     }
-                    else if (incorrectList.Contains(intento))
+                    else if (eList.Contains(intento))
                     {
                         Console.WriteLine("Recuerda que ya intentaste con: '{0}', y no es parte del nombre.", intento);
                         continue;
@@ -74,36 +71,36 @@ namespace Pokecolgado
 
                     if (palabraUpper.Contains(intento))
                     {
-                        correctList.Add(intento);
+                        cList.Add(intento);
 
                         for (int i = 0; i < pokemonElegido.Length; i++)
                         {
                             if (palabraUpper[i] == intento)
                             {
-                                hiddenDisplay[i] = pokemonElegido[i];
+                                letrasOcultas[i] = pokemonElegido[i];
                                 letrasReveladas++;
-                                points = points + 5;
+                                puntos = puntos + 5;
                             }
                         }
                         if (letrasReveladas == pokemonElegido.Length)
-                            end = true;
+                            fin = true;
                     }
                     else
                     {
-                        incorrectList.Add(intento);
+                        eList.Add(intento);
                         Console.WriteLine("No, la letra '{0}' no exsite en su nombre!", intento);
                         vidas--;
-                        points = points - 10;
+                        puntos = puntos - 10;
                     }
                     Console.WriteLine("/////////////////////");
                     Console.WriteLine("");
-                    Console.WriteLine("Tienes las siguientes letras: " + hiddenDisplay.ToString());
+                    Console.WriteLine("Tienes las siguientes letras: " + letrasOcultas.ToString());
                     Console.WriteLine("Pokebolas : " + vidas);
-                    Console.WriteLine("Puntos : " + points);
+                    Console.WriteLine("Puntos : " + puntos);
                     Console.WriteLine("");
                 }
 
-                if (end)
+                if (fin)
                 {
                     Console.WriteLine("Tu pokebola ha acertado!");
                     Console.WriteLine(".");
@@ -122,17 +119,17 @@ namespace Pokecolgado
                 
 
                 Console.WriteLine("Para volver a jugar escribe Si, en caso contrario, cualquier otro caracter");
-                while (String.IsNullOrEmpty(x))
+                while (String.IsNullOrEmpty(confirmar))
                 {
-                    x = Console.ReadLine().ToUpper();
-                    if (x == "Y" || x == "YES" || x == "S" || x =="SI")
+                    confirmar = Console.ReadLine().ToUpper();
+                    if (confirmar == "Y" || confirmar == "YES" || confirmar == "S" || confirmar =="SI")
                     {
 
-                    } else if (String.IsNullOrEmpty(x))
+                    } else if (String.IsNullOrEmpty(confirmar))
                     {
                         Console.WriteLine("Para continuar: Si!");
                         Console.WriteLine("Para salir: Cualquier caracter!");
-                        x = Console.ReadLine().ToUpper();
+                        confirmar = Console.ReadLine().ToUpper();
                     } else
                     {
                         Console.WriteLine("@@ Creditos al satan @@");
